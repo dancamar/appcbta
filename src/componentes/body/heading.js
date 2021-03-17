@@ -1,26 +1,45 @@
 
+import ima2 from '../../img/ima2.jpg';
+import ima3 from '../../img/ima3.png';
+import ima1 from '../../img/ima1.png';
+
 function Heading() {
+
     return (
-
-        <div class="container">
-            <div class="row align-items-start">
-                <div class="col-md-4 col-xm-12 col-sm-6">
-                    One of four columns
-    </div>
-                < div class="col-md-8" >
-
-                    <h1>
-                        Why do we use it?
-      </h1>
-                    <p>
-
-                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-</p>
+        <div className="container-fluid">
+            <div className="row text-center">
+                <div className="col">
+                    <div class="card bg-secondary" style={{width: 350}}>
+                        <img src={ima2} class="card-img-top rounded-circle" alt="..." />
+                        <div class="card-body text-light">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
                 </div>
-
+                <div className="col">
+                <div class="card bg-secondary" style={{width: 350}}>
+                        <img src={ima3} class="card-img-top rounded-circle" alt="..." />
+                        <div class="card-body text-light">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+                <div className="col">
+                <div class="card bg-secondary" style={{width: 350}}>
+                        <img src={ima1} class="card-img-top rounded-circle" alt="..." />
+                        <div class="card-body text-light">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <button type="button" class="btn btn-link btn-outline-danger"><a href="https://www.youtube.com">Continuar leyendo..<i class="bi bi-chevron-double-right"></i></a></button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
     )
 }
 
