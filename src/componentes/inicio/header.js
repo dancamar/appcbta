@@ -1,36 +1,40 @@
+import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
+
+//importar rutas o direcciones
+import FormularioAlumnos from '../formularios/formularioalumnos';
+import Home from '../body/home';
 
 
 function Header() {
     return (
-       
-       
+
+        //Inicializacion de las rutas       
+       <Router>
+
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
-                <a className="navbar-brand" href="#">Navbar</a>
+                <Link className="navbar-brand" to="/">Navbar</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="#">Home</a>
+                            <Link className="nav-link active" aria-current="page" to="/">Home</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="https://github.com/">Github</a>
+                            <Link className="nav-link" to='/formulario1'>formulario</Link>
                         </li>
                         <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Dropdown
-          </a>
+          </Link>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a className="dropdown-item" href="#">Action</a></li>
                                 <li><a className="dropdown-item" href="#">Another action</a></li>
                                 <li><hr className="dropdown-divider" /></li>
                                 <li><a className="dropdown-item" href="#">Something else here</a></li>
                             </ul>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                         </li>
                     </ul>
                     <form className="d-flex">
@@ -41,6 +45,13 @@ function Header() {
             </div>
         </nav>
 
+        <Switch>
+            <Route exact path='/' component={Home}/>
+            <Route exact path='/formulario1' component={FormularioAlumnos}/>
+        </Switch>
+
+
+        </Router>
      
     )
 }
