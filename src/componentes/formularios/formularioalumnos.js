@@ -1,23 +1,74 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function FormularioAlumnos(props) {
+import {db} from '../../services/firebase';
+
+import {toast} from 'react-toastify';
+import listaAlumnos from "./listaAlumnos";
+
+const FormularioAlumnos=()=> {
+
+//Definir los valores de inicio
   const iniciarInput = {
     nombre: "",
     apellidos: "",
-    direccion: "",
+    direccion: ""
   };
 
+  //Setear los valores de inicio
   const [values, setValues] = useState(iniciarInput);
+  const [lista, setLista]=useState([]);
+  const [currentId, setCurrentId]=useState('');
 
+  //obtener los valores de los cuadros de textos del formulario
   const inputChange = (e) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
   };
 
+  const AgregarOrEditar = async(listaAlumnos)=>{
+        await db.collection('appcbta').doc().set(listaAlumnos);
+        toast.success('🦄 Wow so easy!', {
+          position: "top-right",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          type: 'error'
+          });
+
+    }
+
+    const getLista= async(id)=>{
+      db.collection('appcbta').onSnapshot((querySnapshot)=>{
+        const docs=[];
+
+        querySnapshot.forEach(doc=>{
+          docs.push({...doc.data(), id: doc.id});
+        });
+        setLista(docs);
+      })
+    }
+
+  //Guardar la informacion en la bd
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Hola " + "" + values.nombre);
+   AgregarOrEditar(values);
+   setValues({...iniciarInput});
   };
+
+
+  useEffect(()=>{
+    if(currentId===''){
+      setValues({...iniciarInput});
+    }else{
+
+    }
+
+    getLista();
+
+  }, [currentId]);
 
   return (
     <div className="card">
@@ -64,6 +115,8 @@ function FormularioAlumnos(props) {
               id="apellidos"
               placeholder="Ingrese apellidos"
               aria-describedby="apellidos"
+              value={values.apellidos}
+              onChange={inputChange}
             />
           </div>
 
@@ -78,21 +131,40 @@ function FormularioAlumnos(props) {
 
             <input
               type="text"
-              name="diereccion"
+              name="direccion"
               className="form-control"
               id="direccion"
               placeholder="Ingrese su direccion"
               aria-describedby="direccion"
+              value={values.direccion}
+              onChange={inputChange}
             />
           </div>
           <div className="d-grid gap-2">
-          <input type="submit" value="Guardar" className="btn btn-primary"/>
+          <button className="btn btn-primary">
+            {currentId==''? 'Guardar': 'Actualizar'}
+          </button>
           </div>
         </div>
         </form>
 
       </div>
+
+
+      <div className="col-md-6">
+        <h2>Lista de alumnos</h2>
+        {lista.map(
+          lista=>(
+            <div>
+            <h2>{lista.nombre}</h2>
+            <h2>{lista.apellidos}</h2>
+            </div>
+          )
+        )}
+      </div>
     </div>
+
+
   );
 }
 
