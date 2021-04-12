@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function FormularioAlumnos() {
+function FormularioAlumnos(props) {
   const iniciarInput = {
     nombre: "",
     apellidos: "",
@@ -86,7 +86,7 @@ function FormularioAlumnos() {
             />
           </div>
           <div className="d-grid gap-2">
-          <input type="submit" value="Guardar"/>
+          <input type="submit" value="Guardar" className="btn btn-primary"/>
           </div>
         </div>
         </form>

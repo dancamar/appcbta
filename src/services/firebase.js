@@ -12,4 +12,4 @@ var firebaseConfig = {
   // Initialize Firebase
  const fb= firebase.initializeApp(firebaseConfig);
 
- const db=fb.firestore();
+ export const db=fb.firestore();
