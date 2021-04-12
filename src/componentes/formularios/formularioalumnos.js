@@ -1,51 +1,99 @@
-                             
-import {useState} from 'react';
+import { useState } from "react";
 
 function FormularioAlumnos() {
+  const iniciarInput = {
+    nombre: "",
+    apellidos: "",
+    direccion: "",
+  };
 
-    const iniciarInput={
-        nombre:''
-    }
+  const [values, setValues] = useState(iniciarInput);
 
+  const inputChange = (e) => {
+    const { name, value } = e.target;
+    setValues({ ...values, [name]: value });
+  };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert("Hola " + "" + values.nombre);
+  };
 
-    const [values,setValues]=useState(iniciarInput);
+  return (
+    <div className="card">
+      <div className="card-body">
+        <h5 className="card-title">Formulario para alta de alumnos</h5>
 
-    const inputChange=(e)=>{
-        const {name,value}=e.target;
-        setValues({...values,[name]:value})
-    }
+        <form onSubmit={handleSubmit}>
 
-    const msj =(e) =>{
-        e.preventDefault();
-        alert("Hola "+""+values.nombre);
-    }
+        <div className="form-control">
+          <div className="input-group mb-3">
+            <label for="nombre" className="col-sm-2 col-form-label">
+              Nombre
+            </label>
 
+            <span className="input-group-text" id="nombre">
+              <i class="bi bi-person"></i>
+            </span>
 
-    return (
+            <input
+              type="text"
+              name="nombre"
+              className="form-control"
+              id="nombre"
+              placeholder="Ingrese nombre"
+              aria-describedby="nombre"
+              value={values.nombre}
+              onChange={inputChange}
+            />
+          </div>
 
-        <div className="card">
-            <div className="card-body">
-                <h5 className="card-title">Formulario para alta de alumnos</h5>
+          <div className="input-group mb-3">
+            <label for="nombre" className="col-sm-2 col-form-label">
+              Appellidos
+            </label>
 
-                <div className="form-control">
-                    <div className="mb-3 row">
-                        <label for="inputPassword" className="col-sm-2 col-form-label">Nombre</label>
-                        <div className="col-sm-10">
-                            <input type="text" name="nombre" 
-                            className="form-control" 
-                            id="inputPassword" 
-                            placeholder="Ingrese nombre" 
-                            />
-                        </div>
-                    </div>
+            <span className="input-group-text" id="apellidos">
+              <i class="bi bi-person"></i>
+            </span>
 
-                </div>
+            <input
+              type="text"
+              name="apellidos"
+              className="form-control"
+              id="apellidos"
+              placeholder="Ingrese apellidos"
+              aria-describedby="apellidos"
+            />
+          </div>
 
+          <div className="input-group mb-3">
+            <label for="direccion" className="col-sm-2 col-form-label">
+              Direccion
+            </label>
 
-            </div>
+            <span className="input-group-text" id="direccion">
+              <i class="bi bi-house"></i>
+            </span>
+
+            <input
+              type="text"
+              name="diereccion"
+              className="form-control"
+              id="direccion"
+              placeholder="Ingrese su direccion"
+              aria-describedby="direccion"
+            />
+          </div>
+          <div className="d-grid gap-2">
+          <input type="submit" value="Guardar"/>
+          </div>
         </div>
-    )
+        </form>
+
+      </div>
+    </div>
+  );
 }
 
 export default FormularioAlumnos;
