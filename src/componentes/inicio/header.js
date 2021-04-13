@@ -1,8 +1,9 @@
 import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
 
 //importar rutas o direcciones
-import FormularioAlumnos from '../formularios/formularioalumnos';
+//import FormularioAlumnos from '../formularios/FormularioAlumnos';
 import Home from '../body/home';
+import ListaAlumnos from '../formularios/ListaAlumnos';
 
 
 function Header() {
@@ -47,7 +48,7 @@ function Header() {
 
         <Switch>
             <Route exact path='/' component={Home}/>
-            <Route exact path='/formulario1' component={FormularioAlumnos}/>
+            <Route exact path='/formulario1' component={ListaAlumnos}/>
         </Switch>
 
 
